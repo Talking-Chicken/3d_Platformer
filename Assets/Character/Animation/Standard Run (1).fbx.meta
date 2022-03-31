@@ -1,22 +1,12 @@
 fileFormatVersion: 2
-guid: eae2700fa8ecf2d4ea5a57be5f7b280a
+guid: 5dec62a7132203443ac9de6e5f2f4480
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: -623603649343465320
-    second: Scene
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: F_MED_Neoncat_Cyberbody
-    second: {fileID: 2100000, guid: 0ef93138453618e4288f2cf004927d95, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: F_MED_Neoncat_Cyberhead
-    second: {fileID: 2100000, guid: 1c60a86c12828f645be6bef924383978, type: 2}
+      74: -203655887218126122
+    second: mixamo.com
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
