@@ -11,6 +11,10 @@ public class PlayerContol : MonoBehaviour
     [SerializeField] private float speed, gravity, jumpForce, maxJumpTime, airTimeInitial;
     private float jumpTime = 0, airTime; //jump time is the time player hold the jump button, air time is time that player not on ground
     private bool isJumping = false, jumpPressed = false;
+
+    //getter & setter
+    public bool JumpPressed {get => jumpPressed;}
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
