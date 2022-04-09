@@ -10,7 +10,9 @@ public class PlayerContol : MonoBehaviour
     Vector2 moveVect;
     [SerializeField] private float speed, gravity, jumpForce, maxJumpTime, airTimeInitial;
     private float jumpTime = 0, airTime; //jump time is the time player hold the jump button, air time is time that player not on ground
-    private bool isJumping = false, jumpPressed = false;
+
+    //isJumping detect whether player hit space, jumpPressed detect whether player is holding space, isJumped detect whether player released space
+    private bool isJumping = false, jumpPressed = false, isJumped = false;
 
     //getter & setter
     public bool JumpPressed {get => jumpPressed;}
@@ -40,8 +42,14 @@ public class PlayerContol : MonoBehaviour
 
         
         if (controller.isGrounded) {
-            if (isJumping) {
+            if (isJumping && !isJumped) {
                 jumpPressed = true;
+                isJumped = true;
+                animator.SetBool("Is Jumped", isJumped);
+            }
+            if (!isJumping) {
+                isJumped = false;
+                animator.SetBool("Is Jumped", isJumped);
             }
             airTime = airTimeInitial;
         } else {

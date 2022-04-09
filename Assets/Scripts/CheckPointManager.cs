@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class CheckPointManager : MonoBehaviour
 {
-    public static CheckPoint currentCheckpoint;
     private PlayerContol player;
     
     void Start() {
