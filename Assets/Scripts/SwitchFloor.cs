@@ -6,7 +6,9 @@ using UnityEngine;
 public class SwitchFloor : MonoBehaviour
 {
     [SerializeField] bool isRed;
-    private MeshRenderer meshRenderer;
+    private Renderer renderer;
+    [SerializeField] Material origianlMat, transparentMat;
+    Material[] changedMaterials = new Material[3];
     private BoxCollider boxCollider;
 
     private CharacterController controller;
@@ -15,8 +17,10 @@ public class SwitchFloor : MonoBehaviour
     void Start()
     {
         controller = FindObjectOfType<CharacterController>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        renderer = GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
+        for (int i = 0; i < renderer.materials.Length; i++) 
+        changedMaterials[i] = renderer.materials[i];
         if (isRed) {
             switchFloor();
         }
@@ -33,7 +37,15 @@ public class SwitchFloor : MonoBehaviour
     }
 
     public void switchFloor() {
-        meshRenderer.enabled = !meshRenderer.enabled;
+        if (!boxCollider.enabled) {
+            changedMaterials[0] = origianlMat; 
+            renderer.materials = changedMaterials;
+        }
+        else {
+            changedMaterials[0] = transparentMat;
+            renderer.materials = changedMaterials; 
+        }
+        //meshRenderer.enabled = !meshRenderer.enabled;
         boxCollider.enabled = !boxCollider.enabled;
     }
 }

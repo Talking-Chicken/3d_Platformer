@@ -19,6 +19,10 @@ public class PlayerContol : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        if (PlayerPrefs.HasKey("spawnX"))
+            controller.Move(new Vector3(PlayerPrefs.GetFloat("spawnX"),
+                                        PlayerPrefs.GetFloat("spawnY"),
+                                        PlayerPrefs.GetFloat("spawnZ")));
     }
 
     

@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.GetComponent<PlayerContol>() != null)
-            CheckPointManager.currentCheckpoint = this;
+        if (collider.GetComponent<PlayerContol>() != null) {
+            PlayerPrefs.SetFloat("spawnX", transform.position.x);
+            PlayerPrefs.SetFloat("spawnY", transform.position.y);
+            PlayerPrefs.SetFloat("spawnZ", transform.position.z);
+        }
     }
 }
