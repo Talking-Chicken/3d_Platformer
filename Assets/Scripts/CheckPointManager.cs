@@ -15,8 +15,12 @@ public class CheckPointManager : MonoBehaviour
     {
          if(player.transform.position.y < transform.position.y)
          {
-             SceneManager.LoadScene(0);
+            respawn();
          }
+    }
+
+    public static void respawn() {
+        SceneManager.LoadScene(0);
     }
     
 }

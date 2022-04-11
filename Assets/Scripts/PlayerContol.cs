@@ -27,7 +27,6 @@ public class PlayerContol : MonoBehaviour
                                         PlayerPrefs.GetFloat("spawnZ")));
     }
 
-    
     void Update()
     {
         animator.SetFloat("Distance To Floor", detectFloor());
@@ -98,5 +97,11 @@ public class PlayerContol : MonoBehaviour
                 return transform.position.y - hitData.transform.position.y;  
         }
         return -1;
+    }
+
+    void OnTriggerEnter(Collider collider) {
+        if (collider.tag.Equals("Enemy")) {
+            CheckPointManager.respawn();
+        }
     }
 }

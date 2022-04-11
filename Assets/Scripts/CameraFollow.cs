@@ -8,8 +8,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform targetObject;
     [SerializeField] private float smoothFactor;
     private Vector3 cameraOffset;
+    [SerializeField] private float cameraOffsetY, cameraOffsetZ;
     void Start()
     {
+        transform.position = targetObject.transform.position + new Vector3(0, cameraOffsetY, cameraOffsetZ);
         cameraOffset = transform.position - targetObject.transform.position;
     }
 
