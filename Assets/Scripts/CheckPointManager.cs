@@ -20,6 +20,12 @@ public class CheckPointManager : MonoBehaviour
     }
 
     public static void respawn() {
+        if (PlayerPrefs.HasKey("Death Count"))
+            PlayerPrefs.SetInt("Death Count", PlayerPrefs.GetInt("Death Count") + 1);
+        else
+            PlayerPrefs.SetInt("Death Count", 1);
+
+        Debug.Log("respawn");
         SceneManager.LoadScene(0);
     }
     

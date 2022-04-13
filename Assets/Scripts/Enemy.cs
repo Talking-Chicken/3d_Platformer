@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     void Update() {
         if (Vector3.Distance(transform.position, player.transform.position) > 10.0f) {
             isAccelerating = true;
+        } else if (Vector3.Distance(transform.position, player.transform.position) < 7.0f) {
+            isAccelerating = false;
         }
     }
 
@@ -32,7 +34,7 @@ public class Enemy : MonoBehaviour
         if (!isAccelerating)
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
         else
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed + 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed + 0.2f);
         transform.rotation = Quaternion.LookRotation(player.transform.position);
     }
 

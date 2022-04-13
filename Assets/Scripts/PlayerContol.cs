@@ -14,9 +14,12 @@ public class PlayerContol : MonoBehaviour
     //isJumping detect whether player hit space, jumpPressed detect whether player is holding space, isJumped detect whether player released space
     private bool isJumping = false, jumpPressed = false, isJumped = false;
 
+    private bool isAlive = true;
+    [SerializeField] private GameObject deathEffect;
+
     //getter & setter
     public bool JumpPressed {get => jumpPressed;}
-
+    public bool IsAlive {get => isAlive; private set => isAlive = value;}
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -33,7 +36,8 @@ public class PlayerContol : MonoBehaviour
     }
 
     void FixedUpdate() {
-        movementHandle();
+        if (IsAlive)
+            movementHandle();
     }
 
     void movementHandle() {
@@ -101,7 +105,16 @@ public class PlayerContol : MonoBehaviour
 
     void OnTriggerEnter(Collider collider) {
         if (collider.tag.Equals("Enemy")) {
-            CheckPointManager.respawn();
+            if (IsAlive) {
+                IsAlive = false;
+                Instantiate(deathEffect, collider.transform.position, collider.transform.rotation);
+                StartCoroutine(waitToRespawn());
+            }
         }
+    }
+
+    IEnumerator waitToRespawn() {
+        yield return new WaitForSeconds(1.5f);
+        CheckPointManager.respawn();
     }
 }
